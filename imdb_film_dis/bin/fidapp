@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "./lib/imdb_film_dis"
+
+ImdbFilmDis::CLI.new.call
+
+
+# ruby bin/fidapp

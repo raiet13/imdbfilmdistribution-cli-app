@@ -1,5 +1,2 @@
-require "imdb_film_dis/version"
-
-module ImdbFilmDis
-  # Your code goes here...
-end
+require_relative "./imdb_film_dis/version"
+require_relative "./imdb_film_dis/cli"
