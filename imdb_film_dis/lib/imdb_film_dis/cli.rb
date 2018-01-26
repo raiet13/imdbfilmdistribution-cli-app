@@ -9,13 +9,7 @@ class ImdbFilmDis::CLI
     puts "Top 50 Celebs of IMDB Sorted by Popularity Ascending"
     #Scrape Celebs from Top 50 webpage
     ImdbFilmDis::Scraper.scrape_main_page
-
-    input = gets.strip.downcase
-    ImdbFilmDis::Celeb.set_range(input)
-    #mdbFilmDis::Celeb.get_range(range)
-
-    #list_top_ten
-    #menu
+    menu
   end
 
   def list_top_ten
@@ -34,13 +28,15 @@ class ImdbFilmDis::CLI
     input = nil
     current_range = 1
     while input != "exit"
+      range = ImdbFilmDis::Celeb.set_range
       puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
       input = gets.strip.downcase
       #puts "input #{input}"
       if input == "list"
-        list_top_ten
+        ##### NEED TO IDENTIFY VARIABLE OF RANGE
       elsif input == "more"
         puts "show more ranges"
+
       elsif input.to_i > 0
         #puts "show celeb #{input.to_i}"
         puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_details}"
