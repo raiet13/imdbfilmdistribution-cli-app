@@ -13,7 +13,11 @@ class ImdbFilmDis::Scraper
       name = celeb.css("h3.lister-item-header a").text.strip
       url = celeb.css("h3.lister-item-header a").attr("href").text.strip
 
-      #puts "name = #{name} || rank = #{rank} || url = #{url}"
+      #Note : Additional details to consider including
+      # job = celeb.css("p.text-muted").text.strip
+      # knownfor = celeb.css("p.text-muted a").text.strip
+
+      #puts "name = #{name} || rank = #{rank} || url = #{url} || job = #{job} || knownfor = #{knownfor}"
       celeb = ImdbFilmDis::Celeb.new(rank, name, url)
     end
 

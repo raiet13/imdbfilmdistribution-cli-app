@@ -1,10 +1,10 @@
 Code Interactions
 
-- CLI welcomes to gem + auto-scrapes data (see below)
-- Scraper scrapes website of Top 50 (http://www.imdb.com/search/name?gender=male,female&ref_=rlm) and creates Celeb objects
-- Celeb Object = Rank + Name + URL
-- Celeb Class tracks all Celeb Objects created (@@all)
-- Celeb @@all used to track ordered list (1-50) -- Note : Should be in order as entered but use Rank if needed
+X- CLI welcomes to gem + auto-scrapes data (see below)
+X- Scraper scrapes website of Top 50 (http://www.imdb.com/search/name?gender=male,female&ref_=rlm) and creates Celeb objects
+X- Celeb Object = Rank + Name + URL
+X- Celeb Class tracks all Celeb Objects created (@@all)
+X- Celeb @@all used to track ordered list (1-50) -- Note : Should be in order as entered but use Rank if needed
 
 - CLI auto-lists top 10 with options to "list" (again), "exit" (program), "#" (select one of the celebs for further details), "More" (see range of 1-50 in increments of 10) -- Note : Possible to select unlisted celeb or not?
   -> If "list" after "More" -- will list the current range of celebs
@@ -27,3 +27,4 @@ Referenced Labs
 oo-student-scraper-v-000
 ruby-objects-has-many-through-lab-v-000
 ttt-with-ai-project-v-000
+ruby-advanced-class-methods-lab-v-000

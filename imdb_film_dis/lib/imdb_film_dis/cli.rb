@@ -8,10 +8,10 @@ class ImdbFilmDis::CLI
   def call
     puts "Top 50 Celebs of IMDB Sorted by Popularity Ascending"
     #Scrape Celebs from Top 50 webpage
-    @scraper = ImdbFilmDis::Scraper.scrape_main_page
+    ImdbFilmDis::Scraper.scrape_main_page
 
     #Note : Working on Scraper
-    #list_top_ten
+    list_top_ten
     #menu
   end
 
