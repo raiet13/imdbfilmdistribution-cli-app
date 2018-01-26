@@ -8,6 +8,7 @@ class ImdbFilmDis::CLI
 
   def list_top_ten
     puts "List top ten celebs from IMDB"
+    #@celebs = ImdbFilmDis::Celeb.topten
   end
 
   def menu
@@ -19,6 +20,7 @@ class ImdbFilmDis::CLI
       if input == "list"
         list_top_ten
       end
+
     end
     exitProgram
   end
