@@ -6,6 +6,7 @@ class ImdbFilmDis::CLI
   def call
     puts "Top 50 Celebs of IMDB Sorted by Popularity Ascending"
     #Scrape Celebs from Top 50 webpage
+    list_top_ten
     menu
   end
 
@@ -23,7 +24,7 @@ class ImdbFilmDis::CLI
   def menu
     input = nil
     while input != "exit"
-      puts "Enter the number of the celeb you would like more info on, 'exit', or 'list'"
+      puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
       input = gets.strip.downcase
       #puts "input #{input}"
       if input == "list"

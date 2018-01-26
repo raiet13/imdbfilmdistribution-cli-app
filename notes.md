@@ -20,3 +20,10 @@ Code Interactions
   - CLI list options of "new" (select new celeb), "exit" (program), "year #" (see films that person was in that year), "max" (show information ordered by # of films in year descending), "min" (show information ordered by # of films in year ascending)
 
 - Exit Program
+
+-------
+Referenced Labs
+
+oo-student-scraper-v-000
+ruby-objects-has-many-through-lab-v-000
+ttt-with-ai-project-v-000
