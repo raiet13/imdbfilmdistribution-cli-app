@@ -19,16 +19,43 @@ class ImdbFilmDis::Celeb
   #Replace with a single function that handles all ranges (see below)
   def self.topten
     "Lists the top ten celebs with 'Num. Name - Films'"
-    for i in 11..20
+    for i in 1..10
       celeb = @@all[i - 1]
       puts "List Celeb #{i} = #{celeb.display_details}"
     end
   end
 
-  # #Scraping 50 celebs so may as well give option of just seeing top 10 or any of them in increments of 10
-  # def self.range(range)
-  #   "Lists the celebs with 'Num. Name - Films' by range (1-10, 11-20,21-30,31-40,41-50)"
-  # end
+  #Scraping 50 celebs so may as well give option of just seeing top 10 or any of them in increments of 10
+  def self.set_range(input)
+    puts "Lists the celebs with 'Num. Name' by range (1-10, 11-20,21-30,31-40,41-50)"
+    display_range = 0
+    case input.to_i
+      when 1..10
+        puts "Range 1 - 1-10"
+        display_range = 1..10
+      when 11..20
+        puts "Range 2 - 11-20"
+        display_range = 11..20
+      when 21..30
+        puts "Range 3 - 21-30"
+        display_range = 21..30
+      when 31..40
+        puts "Range 4 - 31-40"
+        display_range = 31..40
+      when 41..50
+        puts "Range 5 - 41-50"
+        display_range = 41..50
+      else
+        puts "Please select a number between 1-50"
+      end
+    puts "display range = #{display_range}"
+    for i in display_range
+      celeb = @@all[i - 1]
+      puts "List Celeb #{i} = #{celeb.display_details}"
+    end
+
+  end
+
 
   def display_details
     #@@all.detect{|song| song.name == name}
@@ -36,5 +63,13 @@ class ImdbFilmDis::Celeb
     "#{@rank}. #{@name}"
   end
 
+  def display_films
+    display_details
+    #Display film numbers by year
+  end
+
+  def display_film_details(film)
+
+  end
 
 end
