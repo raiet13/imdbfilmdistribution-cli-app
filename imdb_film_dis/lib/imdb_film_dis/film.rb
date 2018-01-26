@@ -8,4 +8,6 @@ class ImdbFilmDis::Film
     celeb.films << self
   end
 
+  #Need to be able to figure out better way to handle the movie-celeb-role relationship (since there can be multiple celebs in various roles per film)
+
 end

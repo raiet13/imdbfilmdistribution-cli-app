@@ -16,6 +16,7 @@ class ImdbFilmDis::Celeb
     @@all
   end
 
+  #Replace with a single function that handles all ranges (see below)
   def self.topten
     "Lists the top ten celebs with 'Num. Name - Films'"
     for i in 1..10

@@ -1,13 +1,18 @@
 
 require_relative "./celeb"
+require_relative "./scraper"
+require 'nokogiri'
 
 class ImdbFilmDis::CLI
 
   def call
     puts "Top 50 Celebs of IMDB Sorted by Popularity Ascending"
     #Scrape Celebs from Top 50 webpage
-    list_top_ten
-    menu
+    @scraper = ImdbFilmDis::Scraper.scrape_main_page
+
+    #Note : Working on Scraper
+    #list_top_ten
+    #menu
   end
 
   def list_top_ten
