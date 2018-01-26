@@ -12,34 +12,23 @@ class ImdbFilmDis::CLI
     menu
   end
 
-  def list_top_ten
-    puts "List top ten celebs from IMDB"
-    @celebs = ImdbFilmDis::Celeb.topten
-  end
-
-  # Update to allow for selection of index in increments of 10 rather than just showing the top 10
-  def list_by_ten(range)
-    puts "List top celebs from IMDB in increments of 10"
-    "Lists the celebs with 'Num. Name' by range (1-10, 11-20,21-30,31-40,41-50)"
-    #@celebs = ImdbFilmDis::Celeb.range(range)
-  end
-
   def menu
+    puts "Start menu"
+    range = ImdbFilmDis::Celeb.set_range
     input = nil
-    current_range = 1
     while input != "exit"
-      range = ImdbFilmDis::Celeb.set_range
+      puts "Range = #{range}"
       puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
       input = gets.strip.downcase
       #puts "input #{input}"
       if input == "list"
-        ##### NEED TO IDENTIFY VARIABLE OF RANGE
+        ImdbFilmDis::Celeb.display_celebs(range)
       elsif input == "more"
-        puts "show more ranges"
-
-      elsif input.to_i > 0
-        #puts "show celeb #{input.to_i}"
-        puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_details}"
+        puts "Show more ranges -- restart menu to activate range set"
+        menu
+      elsif input.to_i > 0 && input.to_i < 51
+        puts "Show info of celeb #{input.to_i}"
+        puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films}"
       else
         puts "Please only type in one of the approved actions"
       end
