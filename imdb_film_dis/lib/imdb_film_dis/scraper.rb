@@ -6,7 +6,7 @@ require_relative "./film"
 class ImdbFilmDis::Scraper
 
   def self.scrape_main_page
-    puts "Scrape Main Page"
+    # puts "Scrape Main Page"
     doc = Nokogiri::HTML(open("http://www.imdb.com/search/name?gender=male,female&ref_=rlm"))
     doc.css("div.lister-list div.lister-item-content").each do |celeb|
       # data = celeb.css("h3.lister-item-header")
@@ -26,11 +26,11 @@ class ImdbFilmDis::Scraper
     # ImdbFilmDis::Celeb.all.each do |celeb|
     #   puts "Celeb : #{celeb.rank}. #{celeb.name} - #{celeb.url} - #{celeb.films.size}"
     # end
-    puts "Finished Main Page Scrape"
+    # puts "Finished Main Page Scrape"
   end
 
   def self.scrape_celeb_page(celeb)
-    puts "Scrape Celeb Page : #{celeb.name} - #{celeb.url}"
+    # puts "Scrape Celeb Page : #{celeb.name} - #{celeb.url}"
     doc = Nokogiri::HTML(open("http://www.imdb.com" + celeb.url))
 
     filmlist = doc.search("div.article div.filmo-category-section").first
@@ -39,7 +39,8 @@ class ImdbFilmDis::Scraper
     filmlist.search("div").each do |row|
       #puts "Row = #{row}"
       year = row.css("span.year_column").text.strip
-      if year != nil && year != ""
+      if year != nil && year.gsub(/\A[[:space:]]/, "") != ""
+        # puts "celeb = #{celeb.name} || year = '#{year}' || year.gsub = '#{year.gsub(/\A[[:space:]]/, "")}'"
         if year.size > 6
           # puts "Year = #{year}"
           if year.include?("/")

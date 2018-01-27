@@ -35,3 +35,4 @@ Used Links
 
 http://www.rubyguides.com/2015/10/ruby-case/
 https://stackoverflow.com/questions/22350851/create-hash-from-csv-file-gives-error
+http://www.markhneedham.com/blog/2013/02/23/ruby-stripping-out-a-non-breaking-space-character-nbsp/

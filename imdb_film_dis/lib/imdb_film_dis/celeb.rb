@@ -21,7 +21,7 @@ class ImdbFilmDis::Celeb
     puts "Select a range of celebs to display (1-10, 11-20, 21-30, 31-40, 41-50)"
     input = gets.strip.downcase
 
-    puts "input = #{input} || #{input.to_i}"
+    # puts "input = #{input} || #{input.to_i}"
     display_range = 0
     case input.to_i
       when 1..10
@@ -64,11 +64,11 @@ class ImdbFilmDis::Celeb
 
   #Display film numbers by year
   def display_films
-    display_details
+    puts "Showing Information for #{@rank}. #{@name} with #{@films.size} films"
 
     hash = get_films_by_year
     hash.each do |year, filmarray|
-      puts "#{year} - #{filmarray.size}"
+      puts "  #{year} - #{filmarray.size}"
     end
 
     input = nil
@@ -80,17 +80,18 @@ class ImdbFilmDis::Celeb
       input = gets.strip.downcase
       case input.to_i
         when 1
-          puts "reorder"
+          # puts "reorder"
           sort_films_by_number(get_films_by_year)
-          puts "return to menu"
+          # puts "return to menu"
         when 2
-          puts "Select a Year"
+          puts "Input a Year"
           input_year = gets.strip
           # puts "Input = #{input_year.to_sym} || Hash key = #{hash.has_key?(input_year)}"
           # puts "Hash Keys = #{hash.keys}"
-          hash[input_year].each {|film| puts "#{film.details}"}
+          puts "Displaying Films for #{input_year}"
+          hash[input_year].each {|film| puts "  #{film.details}"}
         when 3
-          puts "Returning to main menu"
+          puts "Returning to Main Menu"
         else
           puts "Invalid input, please select one of the specified numbered actions."
       end
@@ -115,6 +116,7 @@ class ImdbFilmDis::Celeb
   end
 
   def sort_films_by_number(hash)
+    puts "Years Listed by Number of Films (Descending) for #{@name}"
     sorted_hash = hash.sort_by {|year, films| films.size}.reverse
     sorted_hash.each do |year, filmarray|
       puts "#{year} - #{filmarray.size}"
