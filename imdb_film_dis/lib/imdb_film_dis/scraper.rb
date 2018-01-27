@@ -39,18 +39,31 @@ class ImdbFilmDis::Scraper
     filmlist.search("div").each do |row|
       #puts "Row = #{row}"
       year = row.css("span.year_column").text.strip
-
-      if year != nil && year != "" && year.size < 6 #Added these conditions to weed out TV shows and movies with odd year formatting
+      if year != nil && year != ""
+        if year.size > 6
+          puts "Year = #{year}"
+          if year.include?("/")
+            year = year.split("/")[0]
+            #puts "Has other version -- new year = #{year}"
+          end
+          #   #Note : The best way to fix this would be to create a loop that creates multiple instances of the show, but I'm going to nix that for now because it is unnecessarily complicated, instead, I'm going to have it only count for the FIRST year
+          if year.include?("-")
+            puts "TV Show of multiple years"
+            # minyear = year.split("-")[0]
+            # maxyear = year.split("-")[1]
+            # puts "range = #{minyear} to #{maxyear}"
+            year = year.split("-")[0]
+          end
+        end
         filmname = row.css("b a").text.strip
         url = row.css("b a").attr("href").text.strip
         puts "year = #{year} || filmname = #{filmname} || url = #{url} || celeb = #{celeb.name}"
 
-        #ImdbFilmDis::Film.new(filmname, year, url, celeb)
         if !(ImdbFilmDis::Film.find_by_url(url))
-          puts "Create new film"
+          # puts "Create new film"
           film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
-        else
-          puts "Film already exists (checked via url)"
+        # else
+        #   puts "Film already exists (checked via url)"
         end
       end
     end

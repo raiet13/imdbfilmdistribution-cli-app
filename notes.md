@@ -10,8 +10,8 @@ X- Celeb @@all used to track ordered list (1-50) -- Note : Should be in order as
   -> If "list" after "More" -- will list the current range of celebs
 X- List Celebs using format of : "{#}. {Name}"
 
-- Scraper scrapes website of individual Celeb and creates Film objects + updates Celeb Films Array
-- Film Object = Name + Year + Role (if possible, kind of weird formatting there)
+X- Scraper scrapes website of individual Celeb and creates Film objects + updates Celeb Films Array
+X- Film Object = Name + Year + Role (if possible, kind of weird formatting there)
 
 - More Details format of :
   "{#}. {Name}" <- Celeb Object
