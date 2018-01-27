@@ -10,7 +10,7 @@ class ImdbFilmDis::CLI
     #Scrape Celebs from Top 50 webpage
     ImdbFilmDis::Scraper.scrape_main_page
 
-    for i in 1..5
+    for i in 1..2
       celeb = ImdbFilmDis::Celeb.all[i - 1]
       ImdbFilmDis::Scraper.scrape_celeb_page(celeb)
     end

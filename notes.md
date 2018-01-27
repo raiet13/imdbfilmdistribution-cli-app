@@ -13,7 +13,7 @@ X- List Celebs using format of : "{#}. {Name}"
 X- Scraper scrapes website of individual Celeb and creates Film objects + updates Celeb Films Array
 X- Film Object = Name + Year + Role (if possible, kind of weird formatting there)
 
-- More Details format of :
+X- More Details format of :
   "{#}. {Name}" <- Celeb Object
   "{Year (descending order)} - {# films was in that year}" <- Celeb Object using Films Array (collect films with year X and get size of returned array)
   etc.

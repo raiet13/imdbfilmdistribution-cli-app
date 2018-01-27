@@ -59,25 +59,47 @@ class ImdbFilmDis::Celeb
   def display_details
     #@@all.detect{|song| song.name == name}
     #{}"#{@rank}. #{@name} - #{@url} | #{@films.size}"
-    "#{@rank}. #{@name} - #{@films.size}"
+    puts "#{@rank}. #{@name} - #{@films.size} films"
   end
 
   #Display film numbers by year
   def display_films
     display_details
+
     hash = get_films_by_year
     hash.each do |year, filmarray|
       puts "#{year} - #{filmarray.size}"
     end
-    puts "Would you like to see the years ordered by descending number of films? [Y/N]"
-    input = gets.strip.downcase
-    if input.downcase == "y"
-      
-    end
+
+    display_films_menu
   end
 
-  def display_film_details(film)
-
+  def display_films_menu
+    puts "Would you like to:"
+    puts "1. Reorder the years based on the number of films?"
+    puts "2. See the list of movies in a given year?"
+    puts "3. Return to the main menu?"
+    input = gets.strip.downcase
+    while input.to_i != 3
+      input = gets.strip.downcase
+      case input.to_i
+        when 1
+          puts "reorder"
+          sort_films_by_number(get_films_by_year)
+          puts "return to menu"
+        when 2
+          puts "Select a Year"
+          input = gets.strip.downcase
+          if hash[input].size > 1
+            hash[input].each {|film| puts "#{film.details}"}
+          else
+            puts "#{hash[input].details}"
+          end
+        else
+          puts "Invalid input, please select one of the specified numbered actions."
+      end
+    end
+    puts "Returning to main menu"
   end
 
   def get_films_by_year
@@ -94,6 +116,14 @@ class ImdbFilmDis::Celeb
     #   puts "#{year} - #{filmarray.size}"
     # end
     years_hash
+  end
+
+  def sort_films_by_number(hash)
+    sorted_hash = hash.sort_by {|year, films| films.size}.reverse
+    sorted_hash.each do |year, filmarray|
+      puts "#{year} - #{filmarray.size}"
+    end
+    sorted_hash
   end
 
 end
