@@ -75,12 +75,12 @@ class ImdbFilmDis::Celeb
   end
 
   def display_films_menu
-    puts "Would you like to:"
-    puts "1. Reorder the years based on the number of films?"
-    puts "2. See the list of movies in a given year?"
-    puts "3. Return to the main menu?"
-    input = gets.strip.downcase
+    input = nil
     while input.to_i != 3
+      puts "Would you like to:"
+      puts "1. Reorder the years based on the number of films? (type '1')"
+      puts "2. See the list of movies in a given year? (type '2')"
+      puts "3. Return to the main menu? (type '3')"
       input = gets.strip.downcase
       case input.to_i
         when 1
@@ -89,17 +89,13 @@ class ImdbFilmDis::Celeb
           puts "return to menu"
         when 2
           puts "Select a Year"
-          input = gets.strip.downcase
-          if hash[input].size > 1
-            hash[input].each {|film| puts "#{film.details}"}
-          else
-            puts "#{hash[input].details}"
-          end
+          #Note : NOT WORKING
+        when 3
+          puts "Returning to main menu"
         else
           puts "Invalid input, please select one of the specified numbered actions."
       end
     end
-    puts "Returning to main menu"
   end
 
   def get_films_by_year

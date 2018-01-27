@@ -10,16 +10,18 @@ class ImdbFilmDis::CLI
     #Scrape Celebs from Top 50 webpage
     ImdbFilmDis::Scraper.scrape_main_page
 
-    for i in 1..2
-      celeb = ImdbFilmDis::Celeb.all[i - 1]
+    # for i in 1..2
+    #   celeb = ImdbFilmDis::Celeb.all[i - 1]
+    #   ImdbFilmDis::Scraper.scrape_celeb_page(celeb)
+    # end
+    # puts "Select a celeb to display films for (1-5)"
+    # input = gets.strip.downcase
+    # puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films}"
+
+    ImdbFilmDis::Celeb.all.each do |celeb|
       ImdbFilmDis::Scraper.scrape_celeb_page(celeb)
     end
-
-    puts "Select a celeb to display films for (1-5)"
-    input = gets.strip.downcase
-    puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films}"
-
-    #menu
+    menu
   end
 
   def menu
