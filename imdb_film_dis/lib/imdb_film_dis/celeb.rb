@@ -71,10 +71,6 @@ class ImdbFilmDis::Celeb
       puts "#{year} - #{filmarray.size}"
     end
 
-    display_films_menu
-  end
-
-  def display_films_menu
     input = nil
     while input.to_i != 3
       puts "Would you like to:"
@@ -89,7 +85,10 @@ class ImdbFilmDis::Celeb
           puts "return to menu"
         when 2
           puts "Select a Year"
-          #Note : NOT WORKING
+          input_year = gets.strip
+          # puts "Input = #{input_year.to_sym} || Hash key = #{hash.has_key?(input_year)}"
+          # puts "Hash Keys = #{hash.keys}"
+          hash[input_year].each {|film| puts "#{film.details}"}
         when 3
           puts "Returning to main menu"
         else
@@ -101,11 +100,12 @@ class ImdbFilmDis::Celeb
   def get_films_by_year
     years_hash = {}
     @films.each do |film|
-      if years_hash[film.year]
-        years_hash[film.year] << film
+      key = film.year.gsub("\u00A0", "") #Note : Not sure why this came up as it doesn't show up elsewhere (found out by checking the hash keys)
+      if years_hash[key]
+        years_hash[key] << film
       else
-        years_hash[film.year] = []
-        years_hash[film.year] << film
+        years_hash[key] = []
+        years_hash[key] << film
       end
     end
     # years_hash.each do |year, filmarray|

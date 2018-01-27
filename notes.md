@@ -34,3 +34,4 @@ ruby-advanced-class-methods-lab-v-000
 Used Links
 
 http://www.rubyguides.com/2015/10/ruby-case/
+https://stackoverflow.com/questions/22350851/create-hash-from-csv-file-gives-error
