@@ -30,7 +30,7 @@ class ImdbFilmDis::Scraper
   end
 
   def self.scrape_celeb_page(celeb)
-    puts "Scrape Celeb Page : #{celeb.url}"
+    puts "Scrape Celeb Page : #{celeb.name} - #{celeb.url}"
     doc = Nokogiri::HTML(open("http://www.imdb.com" + celeb.url))
 
     filmlist = doc.search("div.article div.filmo-category-section").first
@@ -41,14 +41,14 @@ class ImdbFilmDis::Scraper
       year = row.css("span.year_column").text.strip
       if year != nil && year != ""
         if year.size > 6
-          puts "Year = #{year}"
+          # puts "Year = #{year}"
           if year.include?("/")
             year = year.split("/")[0]
             #puts "Has other version -- new year = #{year}"
           end
           #   #Note : The best way to fix this would be to create a loop that creates multiple instances of the show, but I'm going to nix that for now because it is unnecessarily complicated, instead, I'm going to have it only count for the FIRST year
           if year.include?("-")
-            puts "TV Show of multiple years"
+            # puts "TV Show of multiple years"
             # minyear = year.split("-")[0]
             # maxyear = year.split("-")[1]
             # puts "range = #{minyear} to #{maxyear}"
@@ -57,7 +57,7 @@ class ImdbFilmDis::Scraper
         end
         filmname = row.css("b a").text.strip
         url = row.css("b a").attr("href").text.strip
-        puts "year = #{year} || filmname = #{filmname} || url = #{url} || celeb = #{celeb.name}"
+        # puts "year = #{year} || filmname = #{filmname} || url = #{url} || celeb = #{celeb.name}"
 
         if !(ImdbFilmDis::Film.find_by_url(url))
           # puts "Create new film"

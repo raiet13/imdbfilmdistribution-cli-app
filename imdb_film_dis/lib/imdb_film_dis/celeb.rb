@@ -59,16 +59,41 @@ class ImdbFilmDis::Celeb
   def display_details
     #@@all.detect{|song| song.name == name}
     #{}"#{@rank}. #{@name} - #{@url} | #{@films.size}"
-    "#{@rank}. #{@name}"
+    "#{@rank}. #{@name} - #{@films.size}"
   end
 
+  #Display film numbers by year
   def display_films
     display_details
-    #Display film numbers by year
+    hash = get_films_by_year
+    hash.each do |year, filmarray|
+      puts "#{year} - #{filmarray.size}"
+    end
+    puts "Would you like to see the years ordered by descending number of films? [Y/N]"
+    input = gets.strip.downcase
+    if input.downcase == "y"
+      
+    end
   end
 
   def display_film_details(film)
 
+  end
+
+  def get_films_by_year
+    years_hash = {}
+    @films.each do |film|
+      if years_hash[film.year]
+        years_hash[film.year] << film
+      else
+        years_hash[film.year] = []
+        years_hash[film.year] << film
+      end
+    end
+    # years_hash.each do |year, filmarray|
+    #   puts "#{year} - #{filmarray.size}"
+    # end
+    years_hash
   end
 
 end
