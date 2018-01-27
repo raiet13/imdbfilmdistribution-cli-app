@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'pry'
 
+require_relative "./film"
+
 class ImdbFilmDis::Scraper
 
   def self.scrape_main_page
@@ -37,21 +39,27 @@ class ImdbFilmDis::Scraper
     filmlist.search("div").each do |row|
       #puts "Row = #{row}"
       year = row.css("span.year_column").text.strip
+
       if year != nil && year != "" && year.size < 6 #Added these conditions to weed out TV shows and movies with odd year formatting
         filmname = row.css("b a").text.strip
         url = row.css("b a").attr("href").text.strip
-        puts "year = #{year} || filmname = #{filmname} || url = #{url}"
+        puts "year = #{year} || filmname = #{filmname} || url = #{url} || celeb = #{celeb.name}"
 
-        film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
-        binding.pry
-        # if ImdbFilmDis::Film.find_by_url(url)
-        #   puts "Film already exists (checked via url)"
-        # else
-        #   puts "Create new film"
-        #   film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
-        # end
+        #ImdbFilmDis::Film.new(filmname, year, url, celeb)
+        if !(ImdbFilmDis::Film.find_by_url(url))
+          puts "Create new film"
+          film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
+        else
+          puts "Film already exists (checked via url)"
+        end
       end
     end
+
+    # ImdbFilmDis::Film.all.each do |film|
+    #   puts "Film : #{film.name}. #{film.year} - #{film.url}"
+    #   puts "#{ImdbFilmDis::Film.all.size}"
+    # end
+
   end
 
 end
