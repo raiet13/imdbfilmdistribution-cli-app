@@ -11,7 +11,7 @@ class ImdbFilmDis::CLI
     ImdbFilmDis::Scraper.scrape_main_page
 
     celeb = ImdbFilmDis::Celeb.all[0]
-    ImdbFilmDis::Scraper.scrape_celeb_page(celeb.url)
+    ImdbFilmDis::Scraper.scrape_celeb_page(celeb)
     # for i in 1..5
     #   celeb = @@all[i - 1]
     #   ImdbFilmDis::Scraper.scrape_celeb_page(celeb.url)

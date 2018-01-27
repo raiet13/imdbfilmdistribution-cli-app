@@ -27,9 +27,9 @@ class ImdbFilmDis::Scraper
     puts "Finished Main Page Scrape"
   end
 
-  def self.scrape_celeb_page(url)
-    puts "Scrape Celeb Page : #{url}"
-    doc = Nokogiri::HTML(open("http://www.imdb.com" + url))
+  def self.scrape_celeb_page(celeb)
+    puts "Scrape Celeb Page : #{celeb.url}"
+    doc = Nokogiri::HTML(open("http://www.imdb.com" + celeb.url))
 
     filmlist = doc.search("div.article div.filmo-category-section").first
     #puts "filmlist = #{filmlist}"
@@ -37,8 +37,20 @@ class ImdbFilmDis::Scraper
     filmlist.search("div").each do |row|
       #puts "Row = #{row}"
       year = row.css("span.year_column").text.strip
-      film = row.css("b a").text.strip
-      puts "year = #{year} || film = #{film}"
+      if year != nil && year != "" && year.size < 6 #Added these conditions to weed out TV shows and movies with odd year formatting
+        filmname = row.css("b a").text.strip
+        url = row.css("b a").attr("href").text.strip
+        puts "year = #{year} || filmname = #{filmname} || url = #{url}"
+
+        film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
+        binding.pry
+        # if ImdbFilmDis::Film.find_by_url(url)
+        #   puts "Film already exists (checked via url)"
+        # else
+        #   puts "Create new film"
+        #   film = ImdbFilmDis::Film.new(filmname, year, url, celeb)
+        # end
+      end
     end
   end
 
