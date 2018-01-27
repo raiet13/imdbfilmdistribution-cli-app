@@ -1,4 +1,4 @@
-Code Interactions
+Expected Code Interactions
 
 X- CLI welcomes to gem + auto-scrapes data (see below)
 X- Scraper scrapes website of Top 50 (http://www.imdb.com/search/name?gender=male,female&ref_=rlm) and creates Celeb objects

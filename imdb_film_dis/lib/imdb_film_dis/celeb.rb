@@ -21,7 +21,6 @@ class ImdbFilmDis::Celeb
     puts "Select a range of celebs to display (1-10, 11-20, 21-30, 31-40, 41-50)"
     input = gets.strip.downcase
 
-    # puts "input = #{input} || #{input.to_i}"
     display_range = 0
     case input.to_i
       when 1..10
@@ -43,26 +42,25 @@ class ImdbFilmDis::Celeb
         puts "Please select a number between 1-50"
       end
 
-    # puts "display range = #{display_range}"
     display_celebs(display_range)
     display_range
   end
 
+  # Display Celeb basic details for a range of Celebs
   def self.display_celebs(range)
     for i in range
       celeb = @@all[i - 1]
-      #puts "List Celeb #{i} = #{celeb.display_details}"
       puts "#{celeb.display_details}"
     end
   end
 
+  # Retrieve Celeb general info
   def display_details
-    #@@all.detect{|song| song.name == name}
-    #{}"#{@rank}. #{@name} - #{@url} | #{@films.size}"
-    puts "#{@rank}. #{@name} - #{@films.size} films"
+    #puts "#{@rank}. #{@name} - #{@films.size} films"
+    "#{@rank}. #{@name} - #{@films.size} films"
   end
 
-  #Display film numbers by year
+  # Celeb detail menu -- Display film numbers by year + interactive detail menu
   def display_films
     puts "Showing Information for #{@rank}. #{@name} with #{@films.size} films"
 
@@ -80,14 +78,10 @@ class ImdbFilmDis::Celeb
       input = gets.strip.downcase
       case input.to_i
         when 1
-          # puts "reorder"
           sort_films_by_number(get_films_by_year)
-          # puts "return to menu"
         when 2
           puts "Input a Year"
           input_year = gets.strip
-          # puts "Input = #{input_year.to_sym} || Hash key = #{hash.has_key?(input_year)}"
-          # puts "Hash Keys = #{hash.keys}"
           puts "Displaying Films for #{input_year}"
           hash[input_year].each {|film| puts "  #{film.details}"}
         when 3
@@ -98,10 +92,11 @@ class ImdbFilmDis::Celeb
     end
   end
 
+  # Hash for films by year (to get num of films and film names)
   def get_films_by_year
     years_hash = {}
     @films.each do |film|
-      key = film.year.gsub("\u00A0", "") #Note : Not sure why this came up as it doesn't show up elsewhere (found out by checking the hash keys)
+      key = film.year.gsub("\u00A0", "")
       if years_hash[key]
         years_hash[key] << film
       else
@@ -109,17 +104,15 @@ class ImdbFilmDis::Celeb
         years_hash[key] << film
       end
     end
-    # years_hash.each do |year, filmarray|
-    #   puts "#{year} - #{filmarray.size}"
-    # end
     years_hash
   end
 
+  # Sort hash to display by num of films instead of year
   def sort_films_by_number(hash)
     puts "Years Listed by Number of Films (Descending) for #{@name}"
     sorted_hash = hash.sort_by {|year, films| films.size}.reverse
     sorted_hash.each do |year, filmarray|
-      puts "#{year} - #{filmarray.size}"
+      puts "  #{year} - #{filmarray.size}"
     end
     sorted_hash
   end

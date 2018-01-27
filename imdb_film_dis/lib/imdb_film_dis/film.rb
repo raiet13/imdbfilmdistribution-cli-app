@@ -16,11 +16,12 @@ class ImdbFilmDis::Film
     @@all
   end
 
+  # Check that film doesn't already exist (in case of Celeb crossover)
   def self.find_by_url(url)
     @@all.detect{|film| film.url == url}
   end
 
-  #Need to be able to figure out better way to handle the movie-celeb-role relationship (since there can be multiple celebs in various roles per film)
+  # Display film details
   def details
     "#{@name} - #{@year} - #{@url}"
   end
