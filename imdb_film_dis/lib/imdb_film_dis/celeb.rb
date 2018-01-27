@@ -18,8 +18,6 @@ class ImdbFilmDis::Celeb
 
   # Select range of celebs to display
   def self.set_range
-    # puts "Lists the celebs with 'Num. Name' by range (1-10, 11-20,21-30,31-40,41-50)"
-
     puts "Select a range of celebs to display (1-10, 11-20, 21-30, 31-40, 41-50)"
     input = gets.strip.downcase
 

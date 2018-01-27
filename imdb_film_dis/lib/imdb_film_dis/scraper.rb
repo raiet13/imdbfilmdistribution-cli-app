@@ -24,12 +24,22 @@ class ImdbFilmDis::Scraper
     # ImdbFilmDis::Celeb.all.each do |celeb|
     #   puts "Celeb : #{celeb.rank}. #{celeb.name} - #{celeb.url} - #{celeb.films.size}"
     # end
+    puts "Finished Main Page Scrape"
   end
 
   def self.scrape_celeb_page(url)
     puts "Scrape Celeb Page : #{url}"
-    doc = Nokogiri::HTML(open("http://www.imdb.com/" + url))
+    doc = Nokogiri::HTML(open("http://www.imdb.com" + url))
 
+    filmlist = doc.search("div.article div.filmo-category-section").first
+    #puts "filmlist = #{filmlist}"
+
+    filmlist.search("div").each do |row|
+      #puts "Row = #{row}"
+      year = row.css("span.year_column").text.strip
+      film = row.css("b a").text.strip
+      puts "year = #{year} || film = #{film}"
+    end
   end
 
 end
