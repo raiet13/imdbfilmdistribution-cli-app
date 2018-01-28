@@ -1,0 +1,24 @@
+PATH
+  remote: .
+  specs:
+    imdb_film_dis (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    nokogiri (1.6.7.2)
+    pry (0.10.4)
+    rake (10.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  imdb_film_dis!
+  nokogiri (~> 1.6.7.1)
+  pry (~> 0.10.3)
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.16.0

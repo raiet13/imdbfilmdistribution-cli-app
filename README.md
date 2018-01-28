@@ -30,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/'raietsaeed-41555'/imdb_film_dis.
+Bug reports and pull requests are welcome on GitHub at https://github.com/raiet13/imdbfilmdistribution-cli-app.
 
 ## License
 The gem is available as open source under the terms of the MIT License.
