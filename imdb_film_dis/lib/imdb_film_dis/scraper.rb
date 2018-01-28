@@ -6,7 +6,6 @@ require_relative "./film"
 class ImdbFilmDis::Scraper
 
   def self.scrape_main_page
-    puts "Scraping Top 50 Page"
     doc = Nokogiri::HTML(open("http://www.imdb.com/search/name?gender=male,female&ref_=rlm"))
     doc.css("div.lister-list div.lister-item-content").each do |celeb|
       rank = celeb.css("h3.lister-item-header span").text.gsub(".", "").strip
@@ -14,11 +13,9 @@ class ImdbFilmDis::Scraper
       url = celeb.css("h3.lister-item-header a").attr("href").text.strip
       celeb = ImdbFilmDis::Celeb.new(rank, name, url)
     end
-    puts "Finished Scraping Top 50 Page"
   end
 
   def self.scrape_celeb_page(celeb)
-    puts "Scraping #{celeb.rank} of 50"
     doc = Nokogiri::HTML(open("http://www.imdb.com" + celeb.url))
     filmlist = doc.search("div.article div.filmo-category-section").first
     filmlist.search("div").each do |row|
@@ -36,7 +33,6 @@ class ImdbFilmDis::Scraper
         else
           ImdbFilmDis::Film.find_by_url(url).add_to_celeb(celeb)
         end
-
       end
     end
   end
