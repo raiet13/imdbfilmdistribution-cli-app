@@ -37,7 +37,7 @@ class ImdbFilmDis::CLI
         if input != "exit"
           puts "Please only type in one of the approved actions"
         else
-          exitProgram 
+          exitProgram
           return
         end
       end

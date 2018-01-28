@@ -39,10 +39,9 @@ class ImdbFilmDis::Celeb
         puts "Selected Range 5 - 41-50"
         display_range = 41..50
       else
-        return 
+        return
       end
 
-    puts "Display Range = #{display_range}"
     display_celebs(display_range)
     display_range
   end
