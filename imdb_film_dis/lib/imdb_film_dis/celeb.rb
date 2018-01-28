@@ -62,7 +62,7 @@ class ImdbFilmDis::Celeb
 
   # Celeb detail menu -- Display film numbers by year + interactive detail menu
   def display_films_menu
-    puts "Showing Information for #{@rank}. #{@name} with #{@films.size} films"
+    puts "Showing Films by Year (Descending) for #{@rank}. #{@name} with #{@films.size} films"
     hash = display_films_by_year
 
     input = nil
@@ -71,10 +71,11 @@ class ImdbFilmDis::Celeb
       puts "1. Reorder the years based on the number of films? (type '1')"
       puts "2. See the list of movies in a given year? (type '2')"
       puts "3. Return to the main menu? (type '3')"
+
       input = gets.strip.downcase
       case input.to_i
         when 1
-          sort_films_by_number(get_films_by_year)
+          sort_films_by_number
         when 2
           display_films_in_specific_year(hash)
         when 3
@@ -107,6 +108,16 @@ class ImdbFilmDis::Celeb
     films_by_year_hash
   end
 
+  # Sort hash to display by num of films instead of year
+  def sort_films_by_number
+    puts "Showing Years Listed by Number of Films (Descending) for #{@rank}. #{@name} with #{@films.size} films"
+    sorted_hash = get_films_by_year.sort_by {|year, films| films.size}.reverse
+    sorted_hash.each do |year, filmarray|
+      puts "   #{year} - #{filmarray.size}"
+    end
+    sorted_hash
+  end
+
   # Hash for films by year (to get num of films and film names)
   def get_films_by_year
     years_hash = {}
@@ -120,16 +131,6 @@ class ImdbFilmDis::Celeb
       end
     end
     years_hash
-  end
-
-  # Sort hash to display by num of films instead of year
-  def sort_films_by_number(hash)
-    puts "Years Listed by Number of Films (Descending) for #{@name}"
-    sorted_hash = hash.sort_by {|year, films| films.size}.reverse
-    sorted_hash.each do |year, filmarray|
-      puts "   #{year} - #{filmarray.size}"
-    end
-    sorted_hash
   end
 
 end

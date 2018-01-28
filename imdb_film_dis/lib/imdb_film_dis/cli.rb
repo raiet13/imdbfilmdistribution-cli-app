@@ -25,9 +25,8 @@ class ImdbFilmDis::CLI
       end
     end
 
-    exit_bool = false
-    while exit_bool == false
-      puts "exit bool = #{exit_bool}"
+    input = nil
+    while input != "exit"
       puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
       input = gets.strip.downcase
       if input == "list"
@@ -37,14 +36,12 @@ class ImdbFilmDis::CLI
       elsif input.to_i > 0 && input.to_i < 51
         puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films_menu}"
       elsif input == "exit"
-        puts "exit program now"
-        exit_bool = true
-        break
+        exitProgram
+        exit
       else
         puts "Please only type in one of the approved actions"
       end
     end
-    exitProgram
   end
 
   def exitProgram
