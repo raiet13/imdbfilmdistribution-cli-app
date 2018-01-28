@@ -48,6 +48,7 @@ class ImdbFilmDis::Celeb
 
   # Display Celeb basic details for a range of Celebs
   def self.display_celebs(range)
+    puts "Displaying Celebs ranking between #{range}"
     for i in range
       celeb = @@all[i - 1]
       puts "#{celeb.display_details}"
@@ -60,13 +61,9 @@ class ImdbFilmDis::Celeb
   end
 
   # Celeb detail menu -- Display film numbers by year + interactive detail menu
-  def display_films
+  def display_films_menu
     puts "Showing Information for #{@rank}. #{@name} with #{@films.size} films"
-
-    hash = get_films_by_year
-    hash.each do |year, filmarray|
-      puts "  #{year} - #{filmarray.size}"
-    end
+    hash = display_films_by_year
 
     input = nil
     while input.to_i != 3
@@ -79,16 +76,35 @@ class ImdbFilmDis::Celeb
         when 1
           sort_films_by_number(get_films_by_year)
         when 2
-          puts "Input a Year"
-          input_year = gets.strip
-          puts "Displaying Films for #{input_year}"
-          hash[input_year].each {|film| puts "  #{film.details}"}
+          display_films_in_specific_year(hash)
         when 3
           puts "Returning to Main Menu"
         else
           puts "Invalid input, please select one of the specified numbered actions."
       end
     end
+  end
+
+  # Display films by year
+  def display_films_in_specific_year(hash)
+    puts "Input a Year"
+    input_year = gets.strip
+    if hash.has_key?(input_year)
+      puts "Displaying Films for #{input_year}"
+      hash[input_year].each {|film| puts "    #{film.details}"}
+    else
+      puts "Please input one of the listed years"
+      display_films_in_specific_year(hash)
+    end
+  end
+
+  # Display films by year
+  def display_films_by_year
+    films_by_year_hash = get_films_by_year
+    films_by_year_hash.each do |year, filmarray|
+      puts "  #{year} - #{filmarray.size}"
+    end
+    films_by_year_hash
   end
 
   # Hash for films by year (to get num of films and film names)
@@ -111,7 +127,7 @@ class ImdbFilmDis::Celeb
     puts "Years Listed by Number of Films (Descending) for #{@name}"
     sorted_hash = hash.sort_by {|year, films| films.size}.reverse
     sorted_hash.each do |year, filmarray|
-      puts "  #{year} - #{filmarray.size}"
+      puts "   #{year} - #{filmarray.size}"
     end
     sorted_hash
   end

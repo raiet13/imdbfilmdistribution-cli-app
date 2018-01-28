@@ -13,33 +13,35 @@ class ImdbFilmDis::CLI
       ImdbFilmDis::Scraper.scrape_celeb_page(celeb)
     end
     puts "Thank you for waiting!"
-    menu
+    main_menu
   end
 
-  def menu
+  def main_menu
     range = 0
     while range == 0 || range == nil
       range = ImdbFilmDis::Celeb.set_range
-      puts "Please select a number between 1-50"
+      if range == 0 || range == nil
+        puts "Please select a number between 1-50"
+      end
     end
 
-    input = nil
-    while input != "exit"
+    exit_bool = false
+    while exit_bool == false
+      puts "exit bool = #{exit_bool}"
       puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
       input = gets.strip.downcase
       if input == "list"
         ImdbFilmDis::Celeb.display_celebs(range)
       elsif input == "more"
-        menu
+        main_menu
       elsif input.to_i > 0 && input.to_i < 51
-        puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films}"
+        puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films_menu}"
+      elsif input == "exit"
+        puts "exit program now"
+        exit_bool = true
+        break
       else
-        if input != "exit"
-          puts "Please only type in one of the approved actions"
-        else
-          exitProgram
-          return
-        end
+        puts "Please only type in one of the approved actions"
       end
     end
     exitProgram
