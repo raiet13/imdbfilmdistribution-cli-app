@@ -6,7 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    nokogiri (1.6.7.2)
+    nokogiri (1.8.1)
     pry (0.10.4)
     rake (10.4.2)
 
@@ -16,7 +16,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   imdb_film_dis!
-  nokogiri (~> 1.6.7.1)
+  nokogiri (~> 1.8.1)
   pry (~> 0.10.3)
   rake (~> 10.0)
 
