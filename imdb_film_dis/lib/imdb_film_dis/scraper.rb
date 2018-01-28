@@ -30,7 +30,13 @@ class ImdbFilmDis::Scraper
         end
         filmname = row.css("b a").text.strip
         url = row.css("b a").attr("href").text.strip
-        film = ImdbFilmDis::Film.new(filmname, year, url, celeb) if !(ImdbFilmDis::Film.find_by_url(url))
+
+        if !(ImdbFilmDis::Film.find_by_url(url))
+          film = ImdbFilmDis::Film.new(filmname, year.gsub("\u00A0", ""), url, celeb)
+        else
+          ImdbFilmDis::Film.find_by_url(url).add_to_celeb(celeb)
+        end
+
       end
     end
   end

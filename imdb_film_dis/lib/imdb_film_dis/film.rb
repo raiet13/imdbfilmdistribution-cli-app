@@ -8,8 +8,20 @@ class ImdbFilmDis::Film
     @name = name
     @year = year
     @url = url
-    celeb.films << self
     @@all << self
+
+    add_to_celeb(celeb)
+  end
+
+  # Update celeb info
+  def add_to_celeb(celeb)
+    celeb.total_films += 1
+    if celeb.films_hash[year]
+      celeb.films_hash[year] << self
+    else
+      celeb.films_hash[year] = []
+      celeb.films_hash[year] << self
+    end
   end
 
   def self.all

@@ -35,6 +35,7 @@ class ImdbFilmDis::CLI
         main_menu
       elsif input.to_i > 0 && input.to_i < 51
         puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films_menu}"
+        ImdbFilmDis::Celeb.display_celebs(range)
       elsif input == "exit"
         exitProgram
         exit
@@ -45,7 +46,7 @@ class ImdbFilmDis::CLI
   end
 
   def exitProgram
-    puts "Thanks for trying this gem!"
+    puts "Thanks for trying this program!"
   end
 
 end
