@@ -17,7 +17,12 @@ class ImdbFilmDis::CLI
   end
 
   def menu
-    range = ImdbFilmDis::Celeb.set_range
+    range = 0
+    while range == 0 || range == nil
+      range = ImdbFilmDis::Celeb.set_range
+      puts "Please select a number between 1-50"
+    end
+
     input = nil
     while input != "exit"
       puts "Enter the number of the listed celeb you would like more info on, 'more', 'list', or 'exit'"
@@ -29,7 +34,12 @@ class ImdbFilmDis::CLI
       elsif input.to_i > 0 && input.to_i < 51
         puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films}"
       else
-        puts "Please only type in one of the approved actions"
+        if input != "exit"
+          puts "Please only type in one of the approved actions"
+        else
+          exitProgram 
+          return
+        end
       end
     end
     exitProgram
