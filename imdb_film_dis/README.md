@@ -1,8 +1,6 @@
 # ImdbFilmDis
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/imdb_film_dis`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This program is designed to display the distribution of films per year for the first 50 actors/actresses from IMDB Top 500 Celebs page using a CLI.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use this program, simply run 'ruby bin/fidapp' and follow the CLI prompts.
 
 ## Development
 
@@ -33,3 +31,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'raietsaeed-41555'/imdb_film_dis.
+
+## License
+The gem is available as open source under the terms of the MIT License.

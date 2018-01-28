@@ -56,7 +56,6 @@ class ImdbFilmDis::Celeb
 
   # Retrieve Celeb general info
   def display_details
-    #puts "#{@rank}. #{@name} - #{@films.size} films"
     "#{@rank}. #{@name} - #{@films.size} films"
   end
 
