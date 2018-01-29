@@ -35,7 +35,7 @@ class ImdbFilmDis::Film
 
   # Display film details
   def details
-    "#{@name} - #{@year} - #{@url}"
+    "#{@name} - #{@year} - #{"http://www.imdb.com"+@url}"
   end
 
 end
