@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-To use this program, simply run 'ruby bin/fidapp' and follow the CLI prompts.
+To use this program, simply run 'ruby bin/imdbfilmdis' and follow the CLI prompts.
 
 ## Development
 

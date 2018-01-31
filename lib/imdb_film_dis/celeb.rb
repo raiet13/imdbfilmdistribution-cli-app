@@ -56,35 +56,6 @@ class ImdbFilmDis::Celeb
     "#{@rank}. #{@name} - #{@total_films} films"
   end
 
-  # Celeb detail menu -- Display film numbers by year + interactive detail menu
-  ## NOTE : One method of updating this might be to condense the menu similarly to the main menu -- use numbers for years and text for the rest
-  def display_films_menu
-    display_films_hash_by_year(@films_hash)
-
-    input = nil
-    while input.to_i != 4
-      puts "Would you like to:"
-      puts "  1. List the films again by year in descending order? (type '1')"
-      puts "  2. Reorder the years based on the number of films? (type '2')"
-      puts "  3. See the list of movies in a given year? (type '3')"
-      puts "  4. Return to the main menu? (type '4')"
-
-      input = gets.strip.downcase
-      case input.to_i
-        when 1
-          display_films_hash_by_year(@films_hash)
-        when 2
-          sort_films_hash_by_number
-        when 3
-          display_films_hash_in_specific_year
-        when 4
-          puts "Returning to Main Menu"
-        else
-          puts "Invalid input, please select one of the specified numbered actions."
-      end
-    end
-  end
-
   # List year and number of films
   def display_films_hash_by_year(hash)
     if hash == @films_hash

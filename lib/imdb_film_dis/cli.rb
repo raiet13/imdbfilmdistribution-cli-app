@@ -34,7 +34,7 @@ class ImdbFilmDis::CLI
       elsif input == "more"
         main_menu
       elsif input.to_i > 0 && input.to_i < 51
-        puts "#{ImdbFilmDis::Celeb.all[input.to_i-1].display_films_menu}"
+        puts "#{display_films_menu(ImdbFilmDis::Celeb.all[input.to_i-1])}"        
         ImdbFilmDis::Celeb.display_celebs(range)
       elsif input == "exit"
         exitProgram
@@ -48,5 +48,33 @@ class ImdbFilmDis::CLI
   def exitProgram
     puts "Thanks for trying this program!"
   end
+
+  def display_films_menu(celeb)
+    celeb.display_films_hash_by_year(celeb.films_hash)
+
+    input = nil
+    while input.to_i != 4
+      puts "Would you like to:"
+      puts "  1. List the films again by year in descending order? (type '1')"
+      puts "  2. Reorder the years based on the number of films? (type '2')"
+      puts "  3. See the list of movies in a given year? (type '3')"
+      puts "  4. Return to the main menu? (type '4')"
+
+      input = gets.strip.downcase
+      case input.to_i
+        when 1
+          celeb.display_films_hash_by_year(celeb.films_hash)
+        when 2
+          celeb.sort_films_hash_by_number
+        when 3
+          celeb.display_films_hash_in_specific_year
+        when 4
+          puts "Returning to Main Menu"
+        else
+          puts "Invalid input, please select one of the specified numbered actions."
+      end
+    end
+  end
+
 
 end
